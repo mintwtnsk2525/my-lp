@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 練習用のテストページなので、検索エンジンに載せない -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>【テストページ】MIS Tennis School｜ソフトテニススクール｜小・中・高校生 生徒募集中</title>
+  <meta name="description" content="小学生・中学生・高校生のためのソフトテニススクール。平日夜と日曜日中にテニスセンターで練習しています。1回2時間から。体験練習受付中。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    /*
+      写真の入れ方：
+      images フォルダに、下の名前で写真を入れるだけで自動で表示されます。
+      写真がないときは、色のグラデーションが代わりに表示されます。
+        hero.jpg    … いちばん上の大きな写真
+        photo1.jpg  … 特長カード1（はじめてでも安心）
+        photo2.webp … 特長カード2（一人ひとりに合わせた指導）
+        photo3.jpg  … 特長カード3（仲間と一緒に上達）
+        photo4.jpg  … 特長カード4（試合で勝てる力を）
+        coach.webp  … コーチの写真
+    */
+    :root {
+      --bg: #f4fafc;
+      --card: #ffffff;
+      --text: #1d2b33;
+      --muted: #5d6f78;
+      --primary: #1593b0;
+      --primary-dark: #0d6f86;
+      --primary-soft: #e3f4f8;
+      --sky: #bfe6f0;
+      --accent: #ff9f45;
+      --line: #dbe9ee;
+      --line-green: #06c755;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+      letter-spacing: .04em;
+      -webkit-font-smoothing: antialiased;
+      /* マウスポインタを白いソフトテニスボールに */
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.35' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='.55' stop-color='%23f1f6f8'/%3E%3Cstop offset='1' stop-color='%23c9dde4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='11' fill='url(%23g)' stroke='%230d6f86' stroke-width='1.5'/%3E%3C/svg%3E") 14 14, auto;
+    }
+    /* ボタンやリンクの上では、オレンジのふちのボールに */
+    a, button, summary, .photo-card {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.35' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='.55' stop-color='%23f1f6f8'/%3E%3Cstop offset='1' stop-color='%23c9dde4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12.5' fill='url(%23g)' stroke='%23ff9f45' stroke-width='2.5'/%3E%3C/svg%3E") 16 16, pointer !important;
+    }
+    /* 見出し：丸みのあるやさしいゴシック */
+    h1, h2, h3, .target strong, .badge, .btn, .btn-line, .nav-cta {
+      font-family: "Zen Maru Gothic", "Zen Kaku Gothic New", sans-serif;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+    /* 英字・数字：スポーティーなMontserrat */
+    .en, .logo, .sec-title small, .amount, .step::before, .tags span {
+      font-family: "Montserrat", "Zen Kaku Gothic New", sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    /* テストページのお知らせ */
+    .test-notice {
+      background: #fff4e5; color: #8a4b00; border-bottom: 1px solid #ffd8a8;
+      text-align: center; font-size: 13px; font-weight: 700; line-height: 1.6;
+      padding: 8px 16px;
+    }
+    .test-notice strong {
+      display: inline-block; background: #ff9f45; color: #fff;
+      border-radius: 4px; padding: 0 8px; margin-right: 8px; font-size: 12px;
+    }
+
+    /* ナビ */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-style: italic; letter-spacing: .02em; color: var(--primary-dark); text-decoration: none; font-size: 18px; }
+    /* ロゴ画像（images/logo.webp）の盾マーク部分だけを切り出して表示 */
+    .logo-mark {
+      width: 48px; height: 44px; flex-shrink: 0;
+      background: url("images/logo.webp") no-repeat;
+      background-size: 204.8px 111.8px;
+      background-position: -77px -22px;
+      mix-blend-mode: multiply;
+      filter: brightness(1.07) contrast(1.1);
+    }
+    .footer-logo {
+      display: block; margin: 0 auto 12px;
+      width: 168px; height: 198px;
+      background: url("images/logo.webp") no-repeat;
+      background-size: 614px 335px;
+      background-position: -223px -63px;
+      mix-blend-mode: multiply;
+      filter: brightness(1.07) contrast(1.1);
+    }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 700; }
+    .nav-links a { text-decoration: none; color: var(--text); }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--line-green); color: #fff; text-decoration: none;
+      font-weight: 700; font-size: 14px; padding: 8px 16px; border-radius: 999px; white-space: nowrap;
+    }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* ヒーロー（写真） */
+    .hero {
+      position: relative; color: #fff;
+      min-height: 560px; display: flex; align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,55,70,.78) 0%, rgba(8,55,70,.35) 60%, rgba(8,55,70,.1) 100%),
+        url("images/hero.jpg") center / cover no-repeat,
+        linear-gradient(135deg, #7fcfe0 0%, #1593b0 55%, #0d6f86 100%);
+    }
+    .hero .wrap { width: 100%; padding-top: 64px; padding-bottom: 64px; }
+    .badge {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-weight: 800; font-size: 14px; padding: 4px 16px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .hero h1 { font-size: clamp(30px, 6vw, 54px); line-height: 1.4; letter-spacing: .08em; margin-bottom: 18px; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
+    .hero .lead { font-size: clamp(15px, 2.4vw, 18px); max-width: 560px; margin-bottom: 32px; }
+    .btn {
+      display: inline-block; background: var(--accent); color: #fff;
+      text-decoration: none; font-weight: 800; padding: 15px 36px; border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(255,159,69,.4);
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .tags span {
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.5);
+      border-radius: 999px; padding: 3px 14px; font-size: 13px;
+    }
+
+    /* セクション共通 */
+    section { padding: 72px 0; }
+    .sec-title { text-align: center; margin-bottom: 40px; }
+    .sec-title small {
+      display: block; color: var(--primary); font-weight: 800; font-style: italic;
+      letter-spacing: .12em; font-size: clamp(28px, 5vw, 44px); line-height: 1.1;
+      opacity: .18; margin-bottom: -18px;
+    }
+    .sec-title h2 { font-size: clamp(22px, 4vw, 32px); position: relative; }
+
+    /* 写真カード */
+    .photo-grid { display: grid; gap: 20px; grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr; } }
+    .photo-card {
+      position: relative; border-radius: 20px; overflow: hidden;
+      aspect-ratio: 4 / 3; background-color: var(--sky);
+      box-shadow: 0 6px 24px rgba(13,111,134,.12);
+      border: 6px solid #fff;
+    }
+    .photo-card .img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform .5s ease;
+    }
+    .photo-card:hover .img { transform: scale(1.04); }
+    .p1 .img { background-image: url("images/photo1.webp"), linear-gradient(135deg, #a8e0ec, #1593b0); }
+    .p2 .img { background-image: url("images/photo2.webp"), linear-gradient(135deg, #c7ecf3, #3fa9c2); }
+    .p3 .img { background-image: url("images/photo3.webp"), linear-gradient(135deg, #9fd8e6, #0d6f86); }
+    .p4 .img { background-image: url("images/photo4.webp"), linear-gradient(135deg, #b5e3ee, #2b8fa8); background-position: 30% center; }
+    .photo-card .cap {
+      position: absolute; left: 16px; bottom: 16px; right: 16px;
+      background: rgba(20,40,48,.72); color: #fff;
+      border-radius: 14px; padding: 16px 18px;
+      backdrop-filter: blur(2px);
+    }
+    .photo-card .cap h3 { font-size: clamp(18px, 2.6vw, 24px); line-height: 1.4; }
+    .photo-card .cap p { font-size: 13px; opacity: .9; margin-top: 4px; }
+
+    /* 対象 */
+    .targets { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .target {
+      background: var(--card); border-radius: 18px; padding: 24px; text-align: center;
+      box-shadow: 0 2px 14px rgba(0,0,0,.04); border-top: 5px solid var(--primary);
+    }
+    .target:nth-child(2) { border-top-color: var(--accent); }
+    .target:nth-child(3) { border-top-color: var(--primary-dark); }
+    .target strong { display: block; font-size: 22px; color: var(--primary-dark); margin-bottom: 4px; }
+    .target span { color: var(--muted); font-size: 14px; }
+
+    /* 練習日程 */
+    .alt { background: var(--primary-soft); }
+    .schedule { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 18px; overflow: hidden; box-shadow: 0 2px 14px rgba(0,0,0,.05); }
+    .schedule th, .schedule td { padding: 18px; text-align: left; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+    .schedule th { background: #f7fcfd; color: var(--primary-dark); width: 28%; white-space: nowrap; }
+    .schedule tr:last-child th, .schedule tr:last-child td { border-bottom: none; }
+    .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+    .map {
+      margin-top: 28px; background: var(--card); border-radius: 18px; overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,.05);
+    }
+    .map img { display: block; width: 100%; height: auto; }
+    .map-info { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 16px 20px; font-size: 14px; color: var(--muted); }
+    .map-info strong { color: var(--primary-dark); }
+
+    /* コーチ */
+    .coach {
+      background: var(--card); border-radius: 24px; padding: 32px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.05);
+      display: grid; gap: 32px; grid-template-columns: 260px 1fr; align-items: start;
+    }
+    .coach-photo {
+      width: 100%; aspect-ratio: 1; border-radius: 20px;
+      background: url("images/coach.webp") center 30% / cover no-repeat,
+                  linear-gradient(135deg, #a8e0ec, #1593b0);
+      display: grid; place-items: center; color: #fff; font-size: 64px;
+    }
+    .coach h3 { font-size: 24px; }
+    .coach .role { color: var(--primary); font-weight: 700; font-size: 14px; margin-bottom: 14px; }
+    .coach ul { list-style: none; margin-bottom: 16px; }
+    .coach li { font-size: 14px; padding: 4px 0 4px 20px; position: relative; }
+    .coach li::before {
+      content: ""; position: absolute; left: 0; top: 13px;
+      width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+    }
+    .coach .msg {
+      background: var(--primary-soft); border-radius: 14px; padding: 16px 18px;
+      font-size: 14px; color: var(--primary-dark);
+    }
+    @media (max-width: 700px) {
+      .coach { grid-template-columns: 1fr; padding: 24px; }
+      .coach-photo { max-width: 220px; margin: 0 auto; }
+      .coach h3, .coach .role { text-align: center; }
+    }
+
+    /* 生徒・保護者の声 */
+    .voice-lead { text-align: center; color: var(--muted); font-size: 14px; margin: -24px 0 32px; }
+    .voices { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+    @media (max-width: 480px) { .voices { grid-template-columns: 1fr; } }
+    .voice {
+      background: var(--card); border-radius: 18px; padding: 14px;
+      box-shadow: 0 4px 18px rgba(13,111,134,.08);
+      display: flex; gap: 16px; align-items: stretch;
+    }
+    /* images/voices.webp から写真部分を切り出し */
+    .voice .pic {
+      width: 140px; height: 150px; flex-shrink: 0; align-self: flex-start; border-radius: 12px;
+      background: url("images/voices.webp") no-repeat; background-size: 1024px 559px;
+    }
+    .pic.v1 { background-position: -125px -134px; }
+    .pic.v2 { background-position: -532px -134px; }
+    .pic.v3 { background-position: -125px -322px; }
+    .pic.v4 { background-position: -532px -322px; }
+    .voice .body { display: flex; flex-direction: column; flex: 1; min-width: 0; padding: 4px 4px 2px 0; }
+    .voice .tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+    .voice .tag {
+      font-size: 12px; font-weight: 700; padding: 1px 12px; border-radius: 999px;
+      background: var(--primary); color: #fff;
+    }
+    .voice .tag.sub { background: var(--primary-dark); }
+    .voice .tag.parent { background: var(--accent); }
+    .voice .stars { color: #f5b301; font-size: 15px; letter-spacing: .1em; margin-bottom: 6px; }
+    .voice .stars small { color: var(--text); font-family: "Montserrat", sans-serif; font-weight: 600; margin-left: 6px; letter-spacing: 0; }
+    .voice p { font-size: 14px; line-height: 1.75; flex: 1; }
+    .voice .who { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+    .voice .who::before {
+      content: ""; width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      background: var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9' r='4' fill='%231593b0'/%3E%3Cpath d='M4 21c1-5 5-7 8-7s7 2 8 7' fill='%231593b0'/%3E%3C/svg%3E") center / 16px no-repeat;
+    }
+    @media (max-width: 480px) {
+      .voice { flex-direction: column; }
+      .voice .pic { width: 146px; margin: 0 auto; }
+    }
+
+    /* 料金 */
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: var(--card); border-radius: 18px; padding: 28px 24px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.05);
+    }
+    .price { text-align: center; }
+    .price h3 { font-size: 17px; }
+    .price .amount { font-size: 30px; font-weight: 800; color: var(--primary-dark); margin: 6px 0 10px; }
+    .price p { color: var(--muted); font-size: 14px; }
+    .price.featured { border: 2px solid var(--accent); position: relative; }
+    .price.featured::before {
+      content: "おすすめ"; position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #fff; font-size: 12px; font-weight: 800;
+      padding: 2px 14px; border-radius: 999px;
+    }
+    .price-sub { font-size: 12px !important; margin-top: 8px; }
+
+    /* 流れ */
+    .steps { counter-reset: step; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .step {
+      background: var(--card); border-radius: 18px; padding: 28px 22px 22px;
+      position: relative; box-shadow: 0 2px 14px rgba(0,0,0,.05); text-align: center;
+    }
+    .step::before {
+      counter-increment: step; content: "STEP " counter(step);
+      display: inline-block; background: var(--primary); color: #fff;
+      font-weight: 800; font-size: 12px; letter-spacing: .1em;
+      padding: 3px 14px; border-radius: 999px; margin-bottom: 10px;
+    }
+    .step h3 { font-size: 17px; margin-bottom: 4px; }
+    .step p { color: var(--muted); font-size: 14px; }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; }
+    details {
+      background: var(--card); border-radius: 14px; padding: 18px 22px; margin-bottom: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    }
+    summary { font-weight: 700; cursor: pointer; }
+    summary::marker { color: var(--primary); }
+    details p { color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+    /* お問い合わせ */
+    .contact {
+      background:
+        linear-gradient(135deg, rgba(13,111,134,.92), rgba(21,147,176,.88)),
+        url("images/hero.jpg") center / cover no-repeat;
+      color: #fff; text-align: center; border-radius: 28px; padding: 56px 20px;
+    }
+    .contact h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 8px; }
+    .contact p { opacity: .95; margin-bottom: 28px; }
+    .contact .info { margin-top: 20px; font-size: 14px; opacity: .9; }
+    .btn-line {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--line-green); color: #fff; text-decoration: none;
+      font-weight: 800; padding: 15px 36px; border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(6,199,85,.35);
+    }
+    .btn-line .line-mark {
+      background: #fff; color: var(--line-green); font-size: 12px; font-weight: 900;
+      padding: 2px 8px; border-radius: 6px;
+    }
+
+    footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 0 40px; }
+
+    /* スマッシュ音のON/OFFボタン（マウスがあるパソコンだけ表示） */
+    .sound-toggle {
+      position: fixed; left: 16px; bottom: 16px; z-index: 20;
+      display: none; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.95); color: var(--primary-dark);
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: 6px 14px 6px 10px; font: inherit; font-size: 12px; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+    .sound-toggle[aria-pressed="false"] { color: var(--muted); }
+    @media (pointer: fine) { .sound-toggle { display: inline-flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="test-notice" role="note">
+    <strong>テストページ</strong>このページはWebサイト制作の練習用です。スクール・人物・料金・口コミなどの内容は、すべて架空のものです。
+  </div>
+
+  <nav>
+    <div class="wrap">
+      <a class="logo" href="#"><span class="logo-mark" role="img" aria-label="MIS Tennis School ロゴ"></span>MIS Tennis School</a>
+      <div class="nav-links">
+        <a href="#features">特長</a>
+        <a href="#schedule">練習日程</a>
+        <a href="#coach">コーチ</a>
+        <a href="#voice">声</a>
+        <a href="#price">料金</a>
+      </div>
+      <a class="nav-cta" href="#contact">LINEで体験申込</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge">生徒募集中！</div>
+      <h1>ソフトテニスで、<br>毎日にワクワクと成長を。</h1>
+      <p class="lead">小学生・中学生・高校生のためのソフトテニススクールです。<br>はじめての子も、部活でもっと勝ちたい子も大歓迎。</p>
+      <a class="btn" href="#contact">体験練習を申し込む</a>
+      <div class="tags">
+        <span>小・中・高校生</span>
+        <span>平日夜 19:00〜</span>
+        <span>日曜 午前・午後</span>
+        <span>1回2時間〜</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-title"><small>FEATURES</small><h2>MIS Tennis School の特長</h2></div>
+      <div class="photo-grid">
+        <div class="photo-card p1">
+          <div class="img"></div>
+          <div class="cap"><h3>はじめてでも安心！<br>体験練習受付中</h3><p>ラケットの握り方から、ていねいに教えます</p></div>
+        </div>
+        <div class="photo-card p2">
+          <div class="img"></div>
+          <div class="cap"><h3>一人ひとりに合わせた<br>ていねいな指導</h3><p>初心者から部活のレギュラーをめざす子まで</p></div>
+        </div>
+        <div class="photo-card p3">
+          <div class="img"></div>
+          <div class="cap"><h3>学校をこえた仲間と<br>一緒に上達</h3><p>同じ目標を持つ仲間ができる</p></div>
+        </div>
+        <div class="photo-card p4">
+          <div class="img"></div>
+          <div class="cap"><h3>試合で勝てる力を<br>身につける</h3><p>テニスセンターのコートで、試合形式の練習も</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-title"><small>FOR</small><h2>こんな子におすすめ</h2></div>
+      <div class="targets">
+        <div class="target"><strong>小学生</strong><span>はじめてラケットを握る子も大歓迎</span></div>
+        <div class="target"><strong>中学生</strong><span>部活で試合に出たい・勝ちたい</span></div>
+        <div class="target"><strong>高校生</strong><span>技術をもう一段レベルアップ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="schedule">
+    <div class="wrap">
+      <div class="sec-title"><small>SCHEDULE</small><h2>練習日程・場所</h2></div>
+      <table class="schedule">
+        <tr><th>平日</th><td>19:00〜21:00</td></tr>
+        <tr><th>日曜日</th><td>午前の部　9:00〜11:00<br>午後の部　13:00〜15:00</td></tr>
+        <tr><th>練習時間</th><td>1回 2時間〜</td></tr>
+        <tr><th>場所</th><td>みどりの森テニスセンター<br>〇〇県〇〇市みどり町1-2-3（駐車場あり）</td></tr>
+        <tr><th>対象</th><td>小学生・中学生・高校生</td></tr>
+      </table>
+      <p class="note">※ 平日の練習曜日はお問い合わせください。日曜日は午前・午後どちらか好きな時間を選べます。</p>
+      <div class="map">
+        <img src="images/map.svg" alt="みどりの森テニスセンターまでの地図。〇〇駅から市役所通りを北へ進み、みどりの森公園の中にあります。" loading="lazy">
+        <div class="map-info">
+          <span><strong>🚃 電車</strong>　〇〇駅から徒歩10分</span>
+          <span><strong>🚗 車</strong>　無料駐車場あり（30台）</span>
+          <span><strong>🚲 自転車</strong>　駐輪場あり</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coach">
+    <div class="wrap">
+      <div class="sec-title"><small>COACH</small><h2>コーチ紹介</h2></div>
+      <div class="coach">
+        <div class="coach-photo"></div>
+        <div>
+          <h3>MISテニスコーチ</h3>
+          <p class="role">代表コーチ（20代後半）</p>
+          <ul>
+            <li>小学3年生でソフトテニスを始める</li>
+            <li>中学時代、県大会ダブルスでベスト4</li>
+            <li>高校時代、インターハイ出場</li>
+            <li>大学ではソフトテニス部の主将を務める</li>
+            <li>卒業後、地域のジュニアクラブで指導を始め、指導歴5年</li>
+            <li>これまで100名以上の小・中・高校生を指導</li>
+          </ul>
+          <p class="msg">「ボールが打てた！」「試合に勝てた！」という瞬間を、一緒にたくさん作りたいと思っています。年齢が近いコーチなので、部活や進路の相談も気軽にどうぞ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ※ 生徒・保護者の声は練習用の架空の内容です。本番では実際にいただいた声に差し替えてください -->
+  <section style="padding-top:0" id="voice">
+    <div class="wrap">
+      <div class="sec-title"><small>VOICE</small><h2>生徒・保護者の声</h2></div>
+      <p class="voice-lead">実際に通っている生徒さん・保護者の方からの声をご紹介します。</p>
+      <div class="voices">
+        <div class="voice">
+          <div class="pic v1" role="img" aria-label="ラケットを持って笑う女子生徒"></div>
+          <div class="body">
+            <div class="tags-row"><span class="tag">生徒</span><span class="tag sub">試合で勝てた</span></div>
+            <div class="stars">★★★★★<small>5/5</small></div>
+            <p>平日の夜19時からなので、部活が終わってからでも間に合います。試合を想定した練習が多くて、苦手だったバックハンドが今では武器になりました！</p>
+            <div class="who">高校1年生・女子（通って8か月）</div>
+          </div>
+        </div>
+        <div class="voice">
+          <div class="pic v2" role="img" aria-label="笑顔の母親と男の子"></div>
+          <div class="body">
+            <div class="tags-row"><span class="tag parent">保護者</span><span class="tag sub">子どもの成長</span></div>
+            <div class="stars">★★★★★<small>5/5</small></div>
+            <p>人見知りの息子が「次の日曜も行きたい」と言うようになりました。コーチが一人ひとりに声をかけてくださるので、安心して送り出せています。</p>
+            <div class="who">小学4年生の保護者（母）</div>
+          </div>
+        </div>
+        <div class="voice">
+          <div class="pic v3" role="img" aria-label="コートでボールを打つ父親"></div>
+          <div class="body">
+            <div class="tags-row"><span class="tag parent">保護者</span><span class="tag sub">親子で楽しく</span></div>
+            <div class="stars">★★★★★<small>5/5</small></div>
+            <p>見学が自由なので毎週通ううちに、休みの日は親子で打ち合うようになりました。駐車場があるので送り迎えもとても楽です。</p>
+            <div class="who">中学1年生の保護者（父）</div>
+          </div>
+        </div>
+        <div class="voice">
+          <div class="pic v4" role="img" aria-label="トロフィーを持つ生徒たちとコーチ"></div>
+          <div class="body">
+            <div class="tags-row"><span class="tag">生徒</span><span class="tag sub">大会で優勝</span></div>
+            <div class="stars">★★★★★<small>5/5</small></div>
+            <p>部活より打てる量が多くて、半年でサーブが安定しました。スクールの仲間とペアを組んで、目標だった大会で優勝できました！</p>
+            <div class="who">中学2年生・男子（通って1年）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="price">
+    <div class="wrap">
+      <div class="sec-title"><small>PRICE</small><h2>料金</h2></div>
+      <div class="grid">
+        <div class="card price featured">
+          <h3>体験練習</h3>
+          <div class="amount">1,000円</div>
+          <p>まずは1回、雰囲気を体験してください。</p>
+          <p class="price-sub">（1回2時間・ラケット貸し出しあり）</p>
+        </div>
+        <div class="card price">
+          <h3>入会金</h3>
+          <div class="amount">5,500円</div>
+          <p>入会時のみ（スポーツ保険料を含む）</p>
+          <p class="price-sub">体験当日に入会すると無料</p>
+        </div>
+        <div class="card price">
+          <h3>月謝</h3>
+          <div class="amount">8,800円〜</div>
+          <p>週1回（月4回）8,800円<br>週2回（月8回）15,400円<br>通い放題 19,800円</p>
+          <p class="price-sub">※ 金額はすべて税込</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-title"><small>FLOW</small><h2>入会までの流れ</h2></div>
+      <div class="steps">
+        <div class="step"><h3>LINEでお申し込み</h3><p>LINEで友だち追加して、希望の日時と学年を送ってください。</p></div>
+        <div class="step"><h3>体験練習</h3><p>実際の練習に参加して、雰囲気を確かめられます。</p></div>
+        <div class="step"><h3>ご入会</h3><p>気に入ったら入会手続き。次の練習から参加できます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap faq">
+      <div class="sec-title"><small>FAQ</small><h2>よくある質問</h2></div>
+      <details><summary>まったくの初心者でも大丈夫ですか？</summary><p>はい、大丈夫です。ラケットの握り方から丁寧に教えます。</p></details>
+      <details><summary>ラケットを持っていなくても参加できますか？</summary><p>はい、体験練習ではラケットを無料でお貸しします。入会後に自分に合ったラケット選びもアドバイスします。</p></details>
+      <details><summary>持ち物は何ですか？</summary><p>運動できる服装、テニスシューズ（なければ運動靴でOK）、飲み物、タオルをお持ちください。</p></details>
+      <details><summary>保護者の見学はできますか？</summary><p>はい、いつでも見学できます。コートの外から練習の様子をご覧ください。</p></details>
+      <details><summary>振替はできますか？</summary><p>お休みした分は、同じ月のほかの練習日に振り替えできます。前日までにLINEでご連絡ください。</p></details>
+    </div>
+  </section>
+
+  <section style="padding-top:0" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>まずは体験練習から</h2>
+        <p>LINEで友だち追加して、メッセージを送るだけで申し込めます。<br>質問だけでもお気軽にどうぞ。</p>
+        <!-- ↓ href の "#" を LINE公式アカウントの友だち追加URL（https://lin.ee/〜）に差し替える -->
+        <a class="btn-line" href="#" target="_blank" rel="noopener"><span class="line-mark">LINE</span>友だち追加して申し込む</a>
+        <div class="info">送ってほしいこと：お名前・学年・希望の練習日時</div>
+      </div>
+    </div>
+  </section>
+
+  <footer><span class="footer-logo" role="img" aria-label="MIS テニススクール ロゴ"></span>© 2026 MIS Tennis School</footer>
+
+  <button class="sound-toggle" type="button" aria-pressed="true" title="ボールが画面の端に当たったときのスマッシュ音">🔊 スマッシュ音 ON</button>
+
+  <script>
+  /* ボール（マウスポインタ）が画面の端に当たったら、スマッシュ音を鳴らす。クリックでも軽めに鳴らす
+     ※ ブラウザのルールで、ページを一度クリックするまで「端の音」は鳴りません */
+  (() => {
+    if (!window.matchMedia('(pointer: fine)').matches) return; // スマホでは何もしない
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+
+    let ctx = null;
+    let soundOn = true;
+    let armed = true;      // 端から離れたら、また鳴らせる状態に戻す
+    let lastTime = 0;
+    const EDGE = 24;       // 端から何ピクセル以内を「端」とみなすか（速く動かしても拾えるよう広め）
+    const REARM = 80;      // 端からこれだけ離れたら、また鳴らせるようにする
+    const COOLDOWN = 400;  // 連続で鳴りすぎないように（ミリ秒）
+
+    const unlock = () => {
+      if (!ctx) ctx = new AC();
+      if (ctx.state === 'suspended') return ctx.resume();
+      return Promise.resolve();
+    };
+    window.addEventListener('keydown', unlock);
+
+    // クリックしたときも、少し軽めの音で鳴らす（ON/OFFボタンを押したときは鳴らさない）
+    window.addEventListener('pointerdown', (e) => {
+      const p = unlock();
+      if (!soundOn || e.button !== 0 || e.target.closest('.sound-toggle')) return;
+      p.then(() => smash(0.3)).catch(() => {});
+    });
+
+    // 「パーン！」というスマッシュ音を作る（vol：音の大きさ）
+    function smash(vol = 0.55) {
+      const t = ctx.currentTime;
+      const out = ctx.createGain();
+      out.gain.value = vol;
+      out.connect(ctx.destination);
+
+      // ① ラケットにボールが当たる「パン」（ノイズ）
+      const len = Math.floor(ctx.sampleRate * 0.18);
+      const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      const noise = ctx.createBufferSource();
+      noise.buffer = buf;
+      const bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass'; bp.frequency.value = 1600; bp.Q.value = 0.9;
+      const ng = ctx.createGain();
+      ng.gain.setValueAtTime(1, t);
+      ng.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+      noise.connect(bp).connect(ng).connect(out);
+      noise.start(t);
+
+      // ② 打球の重み「ドン」（低い音）
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(220, t);
+      osc.frequency.exponentialRampToValueAtTime(55, t + 0.09);
+      const og = ctx.createGain();
+      og.gain.setValueAtTime(0.9, t);
+      og.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+      osc.connect(og).connect(out);
+      osc.start(t); osc.stop(t + 0.13);
+
+      // ③ ガットの「キン」（高い音）
+      const ping = ctx.createOscillator();
+      ping.type = 'triangle';
+      ping.frequency.setValueAtTime(2600, t);
+      const pg = ctx.createGain();
+      pg.gain.setValueAtTime(0.25, t);
+      pg.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+      ping.connect(pg).connect(out);
+      ping.start(t); ping.stop(t + 0.06);
+    }
+
+    function hit() {
+      if (!armed) return;
+      armed = false;
+      const now = performance.now();
+      if (!soundOn || !ctx || now - lastTime < COOLDOWN) return;
+      lastTime = now;
+      if (ctx.state === 'running') smash();
+      else ctx.resume().then(() => smash()).catch(() => {});
+    }
+
+    // 画面の4辺のうち、いちばん近い辺までの距離
+    function edgeDistance(x, y) {
+      const w = document.documentElement.clientWidth;  // 右のスクロールバーを除いた幅
+      const h = document.documentElement.clientHeight;
+      return Math.min(x, y, w - x, h - y);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const dist = edgeDistance(e.clientX, e.clientY);
+      if (dist <= EDGE) hit();
+      else if (dist >= REARM) armed = true;
+    });
+    // 画面の外やスクロールバーに飛び出したときも「端に当たった」とみなす
+    document.addEventListener('mouseout', (e) => { if (!e.relatedTarget) hit(); });
+    document.documentElement.addEventListener('mouseleave', hit);
+
+    // ON/OFFボタン
+    const btn = document.querySelector('.sound-toggle');
+    btn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      btn.setAttribute('aria-pressed', String(soundOn));
+      btn.textContent = soundOn ? '🔊 スマッシュ音 ON' : '🔇 スマッシュ音 OFF';
+    });
+  })();
+  </script>
+
+</body>
+</html>
